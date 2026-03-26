@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"user-service/handler"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -48,27 +49,7 @@ func main() {
 		})
 	})
 
-	r.POST("/register", func(c *gin.Context) {
-		var user User
-
-		if err := c.BindJSON(&user); err != nil {
-			c.JSON(400, gin.H{"error": "invalid input"})
-			return
-		}
-
-		query := `
-		INSERT INTO users (name, email, password)
-		VALUES ($1, $2, $3)
-	`
-
-		_, err := db.Exec(query, user.Name, user.Email, user.Password)
-		if err != nil {
-			c.JSON(500, gin.H{"error": "failed to insert user"})
-			return
-		}
-
-		c.JSON(200, gin.H{"message": "user created"})
-	})
+	r.POST("/register", handler.Register(db))
 
 	r.Run(":8080")
 }
