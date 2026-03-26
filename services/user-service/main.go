@@ -11,6 +11,12 @@ import (
 	_ "github.com/lib/pq"
 )
 
+type User struct {
+	Name     string `json:"name"`
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
+
 func main() {
 
 	// Load .env file
@@ -40,6 +46,28 @@ func main() {
 		c.JSON(200, gin.H{
 			"status": "ok",
 		})
+	})
+
+	r.POST("/register", func(c *gin.Context) {
+		var user User
+
+		if err := c.BindJSON(&user); err != nil {
+			c.JSON(400, gin.H{"error": "invalid input"})
+			return
+		}
+
+		query := `
+		INSERT INTO users (name, email, password)
+		VALUES ($1, $2, $3)
+	`
+
+		_, err := db.Exec(query, user.Name, user.Email, user.Password)
+		if err != nil {
+			c.JSON(500, gin.H{"error": "failed to insert user"})
+			return
+		}
+
+		c.JSON(200, gin.H{"message": "user created"})
 	})
 
 	r.Run(":8080")

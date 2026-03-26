@@ -1,0 +1,21 @@
+{
+  "name": "Register",
+  "rank": "auntit17745158513641",
+  "request": {
+    "type": "http",
+    "url": "http://localhost:8080/register",
+    "scripts": {
+      "preRequest": "",
+      "postResponse": ""
+    },
+    "method": "POST",
+    "queryParams": [],
+    "headers": [],
+    "body": "{\"name\":\"Ankit\",\"email\":\"ankit@test.com\",\"password\":\"123\"}",
+    "contentType": "application/json",
+    "auth": {
+      "currentAuthType": "INHERIT",
+      "authConfigStore": {}
+    }
+  }
+}
