@@ -21,7 +21,7 @@ func Register(db *sql.DB) gin.HandlerFunc {
 
 		err := service.RegisterUser(db, user.Name, user.Email, user.Password)
 		if err != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to create user"})
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}
 
