@@ -1,0 +1,25 @@
+{
+  "name": "Profile",
+  "request": {
+    "type": "http",
+    "url": "http://localhost:8080/profile",
+    "scripts": {
+      "preRequest": "",
+      "postResponse": ""
+    },
+    "method": "GET",
+    "queryParams": [],
+    "headers": [],
+    "body": "",
+    "contentType": "text/plain",
+    "auth": {
+      "currentAuthType": "BEARER_TOKEN",
+      "authConfigStore": {
+        "BEARER_TOKEN": {
+          "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFua2l0NUB0ZXN0LmNvbSIsImV4cCI6MTc3NDY3NzAyM30.itAdrtcB04CvN1ZfzoWwUywS9WBZY_ZoWedh2qEEIjc"
+        }
+      }
+    }
+  },
+  "rank": "aprofi17745904232101"
+}

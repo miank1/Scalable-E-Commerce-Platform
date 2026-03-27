@@ -10,11 +10,16 @@
     "method": "POST",
     "queryParams": [],
     "headers": [],
-    "body": "{\n  \"email\": \"ankit@test.com\",\n  \"password\": \"123\"\n}\n",
+    "body": "{\n  \"email\": \"ankit5@test.com\",\n  \"password\": \"1234\"\n}\n",
     "contentType": "application/json",
     "auth": {
-      "currentAuthType": "INHERIT",
-      "authConfigStore": {}
+      "currentAuthType": "NO_AUTH",
+      "authConfigStore": {
+        "BASIC_AUTH": {
+          "username": "",
+          "password": ""
+        }
+      }
     }
   },
   "rank": "alogin17745396694911"

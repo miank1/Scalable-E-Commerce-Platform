@@ -11,7 +11,7 @@
     "method": "POST",
     "queryParams": [],
     "headers": [],
-    "body": "{\"name\":\"Ankit\",\"email\":\"ankit@test.com\",\"password\":\"123\"}",
+    "body": "{ \"name\": \"Ankit5\", \"email\": \"ankit5@test.com\", \"password\": \"1234\" }\n",
     "contentType": "application/json",
     "auth": {
       "currentAuthType": "INHERIT",

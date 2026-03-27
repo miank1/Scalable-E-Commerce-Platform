@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"user-service/handler"
+	"user-service/middleware"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -51,5 +52,15 @@ func main() {
 
 	r.POST("/register", handler.Register(db))
 	r.POST("/login", handler.Login(db))
+
+	authorized := r.Group("/")
+	authorized.Use(middleware.AuthMiddleware())
+
+	authorized.GET("/profile", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "you are authorized",
+		})
+	})
+
 	r.Run(":8080")
 }
