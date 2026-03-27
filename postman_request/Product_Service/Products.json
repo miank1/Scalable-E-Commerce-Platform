@@ -1,0 +1,21 @@
+{
+  "name": "Products",
+  "rank": "auntit17745912510911",
+  "request": {
+    "type": "http",
+    "url": "http://localhost:8081/products",
+    "scripts": {
+      "preRequest": "",
+      "postResponse": ""
+    },
+    "method": "GET",
+    "queryParams": [],
+    "headers": [],
+    "body": "",
+    "contentType": "text/plain",
+    "auth": {
+      "currentAuthType": "INHERIT",
+      "authConfigStore": {}
+    }
+  }
+}
