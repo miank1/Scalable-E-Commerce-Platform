@@ -20,3 +20,16 @@ func CreateUser(db *sql.DB, name, email, password string) error {
 	}
 	return err
 }
+
+func GetUserByEmail(db *sql.DB, email string) (string, error) {
+	var hashedPassword string
+
+	query := `SELECT password FROM users WHERE email=$1`
+
+	err := db.QueryRow(query, email).Scan(&hashedPassword)
+	if err != nil {
+		return "", err
+	}
+
+	return hashedPassword, nil
+}

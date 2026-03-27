@@ -50,6 +50,6 @@ func main() {
 	})
 
 	r.POST("/register", handler.Register(db))
-
+	r.POST("/login", handler.Login(db))
 	r.Run(":8080")
 }

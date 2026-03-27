@@ -28,3 +28,24 @@ func Register(db *sql.DB) gin.HandlerFunc {
 		c.JSON(http.StatusOK, gin.H{"message": "user created"})
 	}
 }
+
+func Login(db *sql.DB) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		var user model.User
+
+		if err := c.BindJSON(&user); err != nil {
+			c.JSON(400, gin.H{"error": "invalid input"})
+			return
+		}
+
+		token, err := service.LoginUser(db, user.Email, user.Password)
+		if err != nil {
+			c.JSON(401, gin.H{"error": "invalid credentials"})
+			return
+		}
+
+		c.JSON(200, gin.H{
+			"token": token,
+		})
+	}
+}
