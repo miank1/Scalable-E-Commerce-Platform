@@ -1,0 +1,21 @@
+{
+  "name": "Login",
+  "request": {
+    "type": "http",
+    "url": "http://localhost:8080/login",
+    "scripts": {
+      "preRequest": "",
+      "postResponse": ""
+    },
+    "method": "POST",
+    "queryParams": [],
+    "headers": [],
+    "body": "{\n  \"email\": \"ankit@test.com\",\n  \"password\": \"123\"\n}\n",
+    "contentType": "application/json",
+    "auth": {
+      "currentAuthType": "INHERIT",
+      "authConfigStore": {}
+    }
+  },
+  "rank": "alogin17745396694911"
+}
