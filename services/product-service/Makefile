@@ -5,7 +5,11 @@ build:
 	podman build -t $(APP_NAME) .
 
 run:
-	podman run --rm -it --env-file .env -p $(PORT):$(PORT) $(APP_NAME)
+	podman run -d \
+	--name product-service \
+	--network ecommerce-net \
+	-p 8081:8081 \
+	product-service
 
 dev:
 	go run main.go

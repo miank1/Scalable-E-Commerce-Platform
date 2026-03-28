@@ -4,7 +4,12 @@ build:
 	podman build -t $(APP_NAME) .
 
 run:
-	podman run --rm -it --env-file .env -p 8080:8080 $(APP_NAME)
+	podman run -d \
+	--name user-service \
+	--network ecommerce-net \
+	--env-file .env \
+	-p 8080:8080 \
+	user-service
 
 dev:
 	go run main.go

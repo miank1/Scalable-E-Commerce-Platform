@@ -2,7 +2,10 @@ package handler
 
 import (
 	"database/sql"
+	"fmt"
+	"io"
 	"net/http"
+	"time"
 
 	"user-service/model"
 	"user-service/service"
@@ -31,6 +34,8 @@ func Register(db *sql.DB) gin.HandlerFunc {
 
 func Login(db *sql.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {
+
+		fmt.Println("LOGIN HIT")
 		var user model.User
 
 		if err := c.BindJSON(&user); err != nil {
@@ -48,4 +53,33 @@ func Login(db *sql.DB) gin.HandlerFunc {
 			"token": token,
 		})
 	}
+}
+
+func GetProductsFromProductService(c *gin.Context) {
+
+	client := &http.Client{
+		Timeout: 2 * time.Second,
+	}
+
+	resp, err := client.Get("http://localhost:8081/products")
+
+	if err != nil {
+		fmt.Println("ERROR calling product service:", err)
+		c.JSON(500, gin.H{"error": "failed to call product service"})
+		return
+	}
+	defer resp.Body.Close()
+
+	fmt.Println("Response Status:", resp.Status) // 🔥 ADD
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println("ERROR reading body:", err) // 🔥 ADD
+		c.JSON(500, gin.H{"error": "failed to read response"})
+		return
+	}
+
+	fmt.Println("Response Body:", string(body)) // 🔥 ADD
+
+	c.Data(200, "application/json", body)
 }

@@ -1,0 +1,21 @@
+{
+  "name": "GetProducts",
+  "request": {
+    "type": "http",
+    "url": "http://localhost:8080/user/products",
+    "scripts": {
+      "preRequest": "",
+      "postResponse": ""
+    },
+    "method": "GET",
+    "queryParams": [],
+    "headers": [],
+    "body": "",
+    "contentType": "text/plain",
+    "auth": {
+      "currentAuthType": "INHERIT",
+      "authConfigStore": {}
+    }
+  },
+  "rank": "au"
+}

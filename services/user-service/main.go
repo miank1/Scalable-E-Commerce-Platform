@@ -52,9 +52,14 @@ func main() {
 
 	r.POST("/register", handler.Register(db))
 	r.POST("/login", handler.Login(db))
+	r.GET("/user/products", handler.GetProductsFromProductService)
 
 	authorized := r.Group("/")
 	authorized.Use(middleware.AuthMiddleware())
+
+	for _, route := range r.Routes() {
+		fmt.Println(route.Method, route.Path)
+	}
 
 	authorized.GET("/profile", func(c *gin.Context) {
 		c.JSON(200, gin.H{
