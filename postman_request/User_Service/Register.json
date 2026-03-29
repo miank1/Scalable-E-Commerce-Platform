@@ -1,9 +1,9 @@
 {
   "name": "Register",
-  "rank": "auntit17745158513641",
+  "rank": "am",
   "request": {
     "type": "http",
-    "url": "http://localhost:8080/register",
+    "url": "http://localhost:8000/api/users/register",
     "scripts": {
       "preRequest": "",
       "postResponse": ""
@@ -11,7 +11,7 @@
     "method": "POST",
     "queryParams": [],
     "headers": [],
-    "body": "{ \"name\": \"Ankit5\", \"email\": \"ankit5@test.com\", \"password\": \"1234\" }\n",
+    "body": "{ \"name\": \"Ankit8\", \"email\": \"ankit8@test.com\", \"password\": \"1234\" }\n",
     "contentType": "application/json",
     "auth": {
       "currentAuthType": "INHERIT",

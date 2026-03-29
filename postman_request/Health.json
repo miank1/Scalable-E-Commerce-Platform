@@ -1,8 +1,8 @@
 {
-  "name": "GetProducts",
+  "name": "Health",
   "request": {
     "type": "http",
-    "url": "http://localhost:8000/api/products/products",
+    "url": "http://localhost:8080/health",
     "scripts": {
       "preRequest": "",
       "postResponse": ""
@@ -16,6 +16,5 @@
       "currentAuthType": "INHERIT",
       "authConfigStore": {}
     }
-  },
-  "rank": "au"
+  }
 }

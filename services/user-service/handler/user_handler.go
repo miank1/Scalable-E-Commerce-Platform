@@ -70,16 +70,27 @@ func GetProductsFromProductService(c *gin.Context) {
 	}
 	defer resp.Body.Close()
 
-	fmt.Println("Response Status:", resp.Status) // 🔥 ADD
+	fmt.Println("Response Status:", resp.Status)
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		fmt.Println("ERROR reading body:", err) // 🔥 ADD
+		fmt.Println("ERROR reading body:", err)
 		c.JSON(500, gin.H{"error": "failed to read response"})
 		return
 	}
 
-	fmt.Println("Response Body:", string(body)) // 🔥 ADD
+	fmt.Println("Response Body:", string(body))
 
 	c.Data(200, "application/json", body)
+}
+
+func Profile(c *gin.Context) {
+
+	fmt.Println("Profile HIT")
+
+	email := c.GetHeader("X-User-Email")
+
+	c.JSON(200, gin.H{
+		"user": email,
+	})
 }

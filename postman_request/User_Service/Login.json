@@ -2,7 +2,7 @@
   "name": "Login",
   "request": {
     "type": "http",
-    "url": "http://localhost:8080/login",
+    "url": "http://localhost:8000/api/users/login",
     "scripts": {
       "preRequest": "",
       "postResponse": ""

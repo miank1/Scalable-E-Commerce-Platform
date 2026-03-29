@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"net/http"
 	"strings"
@@ -37,6 +38,11 @@ func forwardRequest(c *gin.Context, target string, prefix string) {
 
 	req.Header = c.Request.Header
 
+	email, exists := c.Get("user_email")
+	if exists {
+		req.Header.Set("X-User-Email", email.(string))
+	}
+
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
@@ -48,4 +54,33 @@ func forwardRequest(c *gin.Context, target string, prefix string) {
 	body, _ := io.ReadAll(resp.Body)
 
 	c.Data(resp.StatusCode, resp.Header.Get("Content-Type"), body)
+}
+
+func AuthMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+
+		fmt.Println("Middleware HIT ---------------->")
+
+		authHeader := c.GetHeader("Authorization")
+		if authHeader == "" {
+			c.JSON(401, gin.H{"error": "missing token"})
+			c.Abort()
+			return
+		}
+
+		tokenString := strings.TrimPrefix(authHeader, "Bearer ")
+
+		// ✅ REAL JWT PARSING
+		email, err := extractEmailFromJWT(tokenString)
+		if err != nil {
+			c.JSON(401, gin.H{"error": "invalid token"})
+			c.Abort()
+			return
+		}
+
+		// ✅ SET EMAIL IN CONTEXT
+		c.Set("user_email", email)
+
+		c.Next()
+	}
 }

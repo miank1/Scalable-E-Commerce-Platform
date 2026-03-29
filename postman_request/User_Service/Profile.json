@@ -2,7 +2,7 @@
   "name": "Profile",
   "request": {
     "type": "http",
-    "url": "http://localhost:8080/profile",
+    "url": "http://localhost:8000/api/users/profile",
     "scripts": {
       "preRequest": "",
       "postResponse": ""
@@ -10,13 +10,13 @@
     "method": "GET",
     "queryParams": [],
     "headers": [],
-    "body": "",
-    "contentType": "text/plain",
+    "body": "{\n  \"email\": \"ankit@test.com\",\n  \"password\": \"123456\"\n}",
+    "contentType": "application/json",
     "auth": {
       "currentAuthType": "BEARER_TOKEN",
       "authConfigStore": {
         "BEARER_TOKEN": {
-          "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFua2l0NUB0ZXN0LmNvbSIsImV4cCI6MTc3NDY3NzAyM30.itAdrtcB04CvN1ZfzoWwUywS9WBZY_ZoWedh2qEEIjc"
+          "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFua2l0NUB0ZXN0LmNvbSIsImV4cCI6MTc3NDg1MzA1Mn0.Sc2UIsu4p_Uc1xscx0FyVAZJVTEN7pGpjDA4CCQqjtY"
         }
       }
     }

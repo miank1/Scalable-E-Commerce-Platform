@@ -50,22 +50,22 @@ func main() {
 		})
 	})
 
+	// public routes
+
 	r.POST("/register", handler.Register(db))
 	r.POST("/login", handler.Login(db))
-	r.GET("/user/products", handler.GetProductsFromProductService)
+
+	// protected routes
 
 	authorized := r.Group("/")
 	authorized.Use(middleware.AuthMiddleware())
 
+	authorized.GET("/profile", handler.Profile)
+	authorized.GET("/products", handler.GetProductsFromProductService)
+
 	for _, route := range r.Routes() {
 		fmt.Println(route.Method, route.Path)
 	}
-
-	authorized.GET("/profile", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "you are authorized",
-		})
-	})
 
 	r.Run(":8080")
 }
